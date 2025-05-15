@@ -11,17 +11,27 @@ animals_data = load_data('animals_data.json')
 print(animals_data)
 
 
+output = ''
 for animal in animals_data:
     name = animal["name"]
     diet = animal["characteristics"]["diet"]
     location = animal["locations"][0]
 
-    print(f"Name: {name}")
-    print(f"Diet: {diet}")
-    print(f"Location: {location}")
+    output += f"Name: {name}\n"
+    output += f"Diet: {diet}\n"
+    output += f"Location: {location}\n"
 
     if "type" in animal["characteristics"]:
         type = animal["characteristics"]["type"]
-        print(f"Type: {type}")
+        output += f"Type: {type}"
     else:
-        print()
+        output += f"\n"
+
+print(output)
+
+with open("animals_template.html", "r") as file:
+    data = file.read()
+    data = data.replace("__REPLACE_ANIMALS_INFO__", output)
+
+with open("animals_template.html", "w") as file:
+    file.write(data)
