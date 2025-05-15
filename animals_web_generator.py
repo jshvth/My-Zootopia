@@ -17,15 +17,18 @@ for animal in animals_data:
     diet = animal["characteristics"]["diet"]
     location = animal["locations"][0]
 
-    output += f"Name: {name}\n"
-    output += f"Diet: {diet}\n"
-    output += f"Location: {location}\n"
+    output += '<li class="cards__item">'
+    output += f"Name: {name}<br/>\n"
+    output += f"Diet: {diet}<br/>\n"
+    output += f"Location: {location}<br/>\n"
 
     if "type" in animal["characteristics"]:
         type = animal["characteristics"]["type"]
-        output += f"Type: {type}"
+        output += f"Type: {type}<br/>\n"
     else:
         output += f"\n"
+
+    output += '</li>'
 
 print(output)
 
