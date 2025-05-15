@@ -8,9 +8,6 @@ def load_data(file_path):
 
 animals_data = load_data('animals_data.json')
 
-print(animals_data)
-
-
 output = ''
 for animal in animals_data:
     name = animal["name"]
@@ -18,19 +15,19 @@ for animal in animals_data:
     location = animal["locations"][0]
 
     output += '<li class="cards__item">'
-    output += f"Name: {name}<br/>\n"
-    output += f"Diet: {diet}<br/>\n"
-    output += f"Location: {location}<br/>\n"
+    output += f'<div class="card__title">{name}</div>'
+    output += f'<p class="card__text"\n>'
+    output += f'<strong>Diet:</strong>{diet}<br/>\n'
+    output += f'<strong>Location:</strong>{location}<br/>\n'
 
     if "type" in animal["characteristics"]:
         type = animal["characteristics"]["type"]
-        output += f"Type: {type}<br/>\n"
+        output += f'<strong>Type:</strong>{type}<br/>\n'
     else:
         output += f"\n"
-
+    output += '</p>'
     output += '</li>'
 
-print(output)
 
 with open("animals_template.html", "r") as file:
     data = file.read()
